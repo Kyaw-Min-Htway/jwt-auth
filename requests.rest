@@ -1,6 +1,5 @@
 Get http://localhost:3000/posts
-Authorization: Bearer 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS2hpbiBNeWF0IE1vbiBLeWF3IiwiaWF0IjoxNzA3OTQ0NzgyfQ.BxOK0-kfudBL21zvVryOdjMf51EmApBQWec3a-X3OiY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lhdyBNaW4gSHR3YXkiLCJpYXQiOjE3MDgwMTMwMjF9.FqpbQyciWO8D-MHQpt7ZmQWOrwGvrTvGVQSg7ZzlkTo
 
 ###
 
@@ -8,5 +7,5 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "username": "Khin Myat Mon Kyaw"
+    "username": "Kyaw Min Htway"
 }

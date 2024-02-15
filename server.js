@@ -8,12 +8,12 @@ app.use(express.json());
 
 const posts = [
     {
-        username: "Kyaw Min Htway",
-        title: "King"
+        username: 'Kyaw Min Htway',
+        title: 'King'
     },
     {
-        username: "Khin Myat Mon Kyaw",
-        title: "Queen"
+        username: 'Khin Myat Mon Kyaw',
+        title: 'Queen'
     }
 ]
 app.get('/posts', authenticateToken, (req, res) => {
@@ -23,7 +23,7 @@ app.get('/posts', authenticateToken, (req, res) => {
 app.post('/login', (req,res) => {
     //Authenticate User
 
-    const username = req.body.username
+    const username = req.body.username;
     const user = { name: username }
 
    const accessToken =  jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
@@ -31,15 +31,22 @@ app.post('/login', (req,res) => {
 })
 
 function authenticateToken(req, res, next) {
-    const authHeader = req.header['authorization']
-    const token = authHeader && authHeader.split('')[1]
-    if(token == null) return res.sendStatus(401)
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if(!token){
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.sendStatus(403)
-        req.user = user
-        next()
-    })
+        if(err){
+            return res.status(403).json({ message: "Token is not valid"});
+        }
+        req.user = user;
+        next();
+    });
 }
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
